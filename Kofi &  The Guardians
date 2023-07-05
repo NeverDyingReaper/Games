@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kofi and the Guardians</title>
+  <style>
+    body {
+      background-color: black;
+      color: red;
+      font-family: 'Arial', sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+
+    #output {
+      background-color: #f7f7f7;
+      padding: 10px;
+      height: 200px;
+      overflow-y: scroll;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .player {
+      color: blue;
+    }
+
+    .npc {
+      color: green;
+    }
+
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kofi and the Guardians</h1>
+  <div id="output"></div>
+  <input type="text" id="input" placeholder="Enter your command">
+
+  <script>
+    // Game content and logic
+    const gameOutput = document.getElementById('output');
+    const inputBox = document.getElementById('input');
+
+    // Function to handle user input
+    function handleInput() {
+      const userInput = inputBox.value;
+      gameOutput.innerHTML += `<p class="player"><strong>Player:</strong> ${userInput}</p>`;
+
+      // Process user input and generate game response
+      const gameResponse = generateGameResponse(userInput);
+
+      gameOutput.innerHTML += `<p class="npc"><strong>NPC:</strong> ${gameResponse}</p>`;
+
+      // Clear the input box
+      inputBox.value = '';
+      gameOutput.scrollTop = gameOutput.scrollHeight;
+    }
+
+    // Function to generate game response based on user input
+    function generateGameResponse(userInput) {
+      // Remove leading/trailing whitespaces and convert to lowercase for easier comparison
+      const command = userInput.trim().toLowerCase();
+
+      // Game logic
+      if (command === 'help') {
+        return 'This is the help message.';
+      } else if (command === 'explore') {
+        return 'You venture into the dense forest and encounter a mysterious guardian.';
+      } else if (command === 'catch') {
+        return 'You attempt to catch the guardian.';
+      } else if (command === 'battle') {
+        return 'You engage in a thrilling battle with the guardian.';
+      } else {
+        return "I'm sorry, I don't understand that command. Type 'help' for a list of available commands.";
+      }
+    }
+
+    // Event listener for handling user input
+    inputBox.addEventListener('keypress', function(event) {
+      if (event.keyCode === 13) {
+        handleInput();
+      }
+    });
+  </script>
+</body>
+</html>
